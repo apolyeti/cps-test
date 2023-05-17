@@ -9,12 +9,17 @@ export default function Counter() {
     const [count, setCount] = useState(0);
     const [running , setRunning] = useState(false);
     const [clicks, setCPS] = useState('cps test')
+    const [isDisabled, setDisabled] = useState(false);
     const resetCount = () => {
         setCount(0);
         setRunning(false);
     }
     const displayCPS = (num : number) => {
         setCPS(num + ' clicks per second');
+        setDisabled(true);
+        setTimeout(() => {
+            setDisabled(false);
+        } , 500);
     }
     return (
             <VStack
@@ -33,6 +38,9 @@ export default function Counter() {
                     height={'200px'}
                     marginTop={'50px'}
                     onClick={() => {
+                        if (isDisabled) {
+                            return;
+                        }
                         setCount(count + 1);
                         if (count == 0) {
                             setRunning(true);
@@ -45,6 +53,7 @@ export default function Counter() {
                     _active={{
                         bgColor: '#612f52',
                     }}
+                    disabled={isDisabled}
                 >
                     <VStack>
                         <Text
