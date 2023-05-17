@@ -1,11 +1,13 @@
 'use client';
 import { useState } from "react";
 import { Button, Text, VStack } from "@chakra-ui/react";
+import Stopwatch from "./Stopwatch";
 
 
 
 export default function Counter() {
     const [count, setCount] = useState(0);
+    const [running , setRunning] = useState(false);
     return (
             <VStack
                 marginTop={"85px"}>
@@ -24,6 +26,9 @@ export default function Counter() {
                     marginTop={'50px'}
                     onClick={() => {
                         setCount(count + 1);
+                        if (count > -1) {
+                            setRunning(true);
+                        }
                     }}
                     bgColor={'#7d476e'}
                     _hover={{
@@ -45,6 +50,7 @@ export default function Counter() {
                         </Text>
                     </VStack>
                 </Button>
+                <Stopwatch run={running}/>
             </VStack>
     );
 }

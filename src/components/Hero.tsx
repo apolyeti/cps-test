@@ -4,7 +4,6 @@ import Counter from "./Counter";
 import Stopwatch from "./Stopwatch";
 
 export default function Hero() {
-    const [count, setCount] = useState(0);
     return (
         <VStack>
             <SlideFade
@@ -20,7 +19,6 @@ export default function Hero() {
                 <Center>
                     <Counter />
                 </Center>
-                <Stopwatch />
             </SlideFade>
         </VStack>
     );

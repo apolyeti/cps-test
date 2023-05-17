@@ -1,20 +1,26 @@
 import { use, useEffect, useState } from 'react';
 import { Button, VStack, Center } from '@chakra-ui/react';
 
-export default function Stopwatch() {
+export default function Stopwatch({run} : {run: boolean}) {
     const [time, setTime] = useState(0);
-    const [running, setRunning] = useState(false);
     useEffect(() => {
         let interval : any;
-        if (running) {
+        if (run) {
             interval = setInterval(() => {
-                setTime((prevTime) => prevTime + 10);
+                setTime((prevTime) =>  {
+                    const newTime = prevTime + 10;
+                    if (newTime >= 5000) {
+                        run = !run;
+                        return 5000;
+                    }
+                    return newTime;
+                });
             }, 10);
-        } else if (!running) {
+        } else if (!run) {
             clearInterval(interval)
         }
         return () => clearInterval(interval);
-    }, [running]);
+    }, [run]);
     return (
         <div>
             <Center>
@@ -22,24 +28,6 @@ export default function Stopwatch() {
                 <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
                 <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
             </Center>
-            <VStack>
-                <Button 
-                    onClick={() => setRunning(!running)}
-                    bgColor={'#7d476e'}
-                    _hover={{
-                        bgColor: '#9c608b',
-                    }}>
-                        {running ? "Stop" : "Start"}   
-                </Button>
-                <Button 
-                    onClick={() => setTime(0)}
-                    bgColor={'#7d476e'}
-                    _hover={{
-                        bgColor: '#9c608b',
-                    }}>
-                        Reset
-                </Button>
-            </VStack>
         </div>
     );
 }
