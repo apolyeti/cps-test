@@ -8,6 +8,14 @@ import Stopwatch from "./Stopwatch";
 export default function Counter() {
     const [count, setCount] = useState(0);
     const [running , setRunning] = useState(false);
+    const [clicks, setCPS] = useState('cps test')
+    const resetCount = () => {
+        setCount(0);
+        setRunning(false);
+    }
+    const displayCPS = (num : number) => {
+        setCPS(num + ' clicks per second');
+    }
     return (
             <VStack
                 marginTop={"85px"}>
@@ -18,7 +26,7 @@ export default function Counter() {
                     bgClip="text"
                     textAlign="center"
                 >
-                    cps test
+                    {clicks}
                 </Text>
                 <Button
                     width={'200px'}
@@ -50,7 +58,7 @@ export default function Counter() {
                         </Text>
                     </VStack>
                 </Button>
-                <Stopwatch run={running}/>
+                <Stopwatch run={running} checkTimeLimit = {resetCount} displayCPS = {displayCPS} count = {count}/>
             </VStack>
     );
 }
