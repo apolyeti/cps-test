@@ -1,5 +1,5 @@
 import { use, useEffect, useState } from 'react';
-import { Button } from '@chakra-ui/react';
+import { Button, VStack, Center } from '@chakra-ui/react';
 
 export default function Stopwatch() {
     const [time, setTime] = useState(0);
@@ -17,12 +17,12 @@ export default function Stopwatch() {
     }, [running]);
     return (
         <div>
-            <div>
+            <Center>
                 <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
                 <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
                 <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
-            </div>
-            <div>
+            </Center>
+            <VStack>
                 <Button 
                     onClick={() => setRunning(!running)}
                     bgColor={'#7d476e'}
@@ -39,7 +39,7 @@ export default function Stopwatch() {
                     }}>
                         Reset
                 </Button>
-            </div>
+            </VStack>
         </div>
     );
 }
