@@ -26,7 +26,7 @@ export default function Counter() {
                     marginTop={'50px'}
                     onClick={() => {
                         setCount(count + 1);
-                        if (count > -1) {
+                        if (count == 0) {
                             setRunning(true);
                         }
                     }}
