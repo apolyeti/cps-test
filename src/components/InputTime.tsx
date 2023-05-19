@@ -18,6 +18,7 @@ export default function InputTime({handleDurationChange} : {handleDurationChange
                     (e) => setTimeInput(parseInt(e.target.value))
                 }
                 border={'none'}
+                borderBottom={'0.0005rem solid #c965ad'}
              />
 
             <Button

@@ -1,6 +1,6 @@
 const META = {
     title: "CPS Test",
-    description: "cps test",
+    description: "cps tester",
     lang: "en",
     url: "https://example.com",
     image: "/logo.png",
