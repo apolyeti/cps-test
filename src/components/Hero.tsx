@@ -1,7 +1,5 @@
-import { Center, Button, Text, Box, SlideFade, VStack, Input} from "@chakra-ui/react";
-import { useState } from "react";
+import { Center, SlideFade, VStack} from "@chakra-ui/react";
 import Counter from "./Counter";
-import InputTime from "./InputTime";
 
 export default function Hero() {
     return (
