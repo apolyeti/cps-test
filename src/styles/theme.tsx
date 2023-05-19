@@ -14,7 +14,7 @@ const theme = extendTheme({
 			},
 			body: {
 				fontFamily:
-					"-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif, Ubuntu-L",
+					"Oxygen, Ubuntu, Ubuntu-L, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
 				color: "white",
 				lineHeight: "base",
 				padding: 0,

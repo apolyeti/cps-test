@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Button, Text, VStack } from "@chakra-ui/react";
 import Stopwatch from "./Stopwatch";
-
+// import body from "../styles/theme";
 
 
 export default function Counter() {
@@ -15,12 +15,18 @@ export default function Counter() {
         setRunning(false);
     }
     const displayCPS = (num : number) => {
-        setCPS(num + ' clicks per second');
+        if (num != 1) {
+            setCPS((parseFloat(num.toFixed(2)) + ' clicks per second'));
+        } else {
+            setCPS('1 click per second');
+        }
         setDisabled(true);
         setTimeout(() => {
             setDisabled(false);
         } , 500);
     }
+
+
     return (
             <VStack
                 marginTop={"85px"}>
@@ -30,6 +36,7 @@ export default function Counter() {
                     bgColor={'#c965ad'}
                     bgClip="text"
                     textAlign="center"
+                    fontFamily={'body.fontFamily'}
                 >
                     {clicks}
                 </Text>

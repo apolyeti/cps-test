@@ -1,10 +1,15 @@
 import { useEffect, useState, useRef } from 'react';
 import { Button, VStack, Center } from '@chakra-ui/react';
+import InputTime from './InputTime';
 
 export default function Stopwatch({run, checkTimeLimit, displayCPS, count} : {run: boolean, checkTimeLimit: () => void, displayCPS: (num : number) => void, count : number}) {
     const [time, setTime] = useState(0);
     const [startTime, setStartTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
+    const [timeDuration, setTimeDuration] = useState(5);
+
+    
+
     const countRef = useRef(count);
 
     useEffect(() => {
@@ -22,14 +27,15 @@ export default function Stopwatch({run, checkTimeLimit, displayCPS, count} : {ru
         }
 
         if (run) {
+            const timeLimit = timeDuration * 1000;
             console.log(count)
             interval = setInterval(() => {
                 const currentTime = Date.now();
                 const elapsedTime = currentTime - startTime;
-                if (elapsedTime >= 5000) {
+                if (elapsedTime >= timeLimit) {
                     clearInterval(interval);
-                    setTime(5000);
-                    displayCPS(countRef.current / 5);
+                    setTime(timeLimit);
+                    displayCPS(countRef.current / timeDuration);
                     checkTimeLimit();
                 } else {
                     setTime(elapsedTime)
@@ -44,12 +50,13 @@ export default function Stopwatch({run, checkTimeLimit, displayCPS, count} : {ru
     
 
     return (
-        <div>
+        <VStack>
             <Center>
                 <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
                 <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-                <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
+                <span>{ (("0" + ((time / 10) % 100)).slice(-2)) }</span>
             </Center>
-        </div>
+            <InputTime handleDurationChange={setTimeDuration}/>
+        </VStack>
     );
 }

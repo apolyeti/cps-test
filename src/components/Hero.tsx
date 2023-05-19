@@ -1,7 +1,7 @@
-import { Center, Button, Text, Box, SlideFade, VStack} from "@chakra-ui/react";
+import { Center, Button, Text, Box, SlideFade, VStack, Input} from "@chakra-ui/react";
 import { useState } from "react";
 import Counter from "./Counter";
-import Stopwatch from "./Stopwatch";
+import InputTime from "./InputTime";
 
 export default function Hero() {
     return (
@@ -16,7 +16,7 @@ export default function Hero() {
                     },
                 }}
                 >
-                <Center>
+                <Center marginBottom={'20px'}>
                     <Counter />
                 </Center>
             </SlideFade>
