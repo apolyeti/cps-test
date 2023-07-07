@@ -2,7 +2,15 @@ import { useEffect, useState, useRef } from 'react';
 import { Button, VStack, Center } from '@chakra-ui/react';
 import InputTime from './InputTime';
 
-export default function Stopwatch({run, checkTimeLimit, displayCPS, count} : {run: boolean, checkTimeLimit: () => void, displayCPS: (num : number) => void, count : number}) {
+interface StopwatchProps {
+    run: boolean;
+    checkTimeLimit: () => void;
+    displayCPS: (num: number) => void;
+    count: number;
+}
+
+export default function Stopwatch(props : StopwatchProps) {
+    const { run, checkTimeLimit, displayCPS, count } = props;
     const [time, setTime] = useState(0);
     const [startTime, setStartTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);

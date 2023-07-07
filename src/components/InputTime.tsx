@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { Button, Input, VStack} from "@chakra-ui/react";
 
-export default function InputTime({handleDurationChange} : {handleDurationChange: (seconds : number) => void}) {
+interface InputTimeProps {
+    handleDurationChange: (seconds : number) => void;
+}
+
+export default function InputTime({ handleDurationChange } : InputTimeProps) {
 
     const [timeInput, setTimeInput] = useState(5);
 
